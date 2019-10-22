@@ -10,12 +10,12 @@ function Block(props) {
         <div className="block previous-block p3"></div>
         <div className="block previous-block p2"></div>
         <div className="block previous-block p1">
-          <div>block number: {number.slice(0, 8)}...-1</div>
+          <div className="block-number">{parseInt(number, 16) - 1}</div>
           <div>hash: {parent.hash.slice(0, 8)}...</div>
         </div>
 
         <div className="block current-block">
-          <div>block number: {number.slice(0, 8)}...</div>
+          <div className="block-number">{parseInt(number, 16)}</div>
           <div>hash: {hash.slice(0, 8)}...</div>
           <div>parent hash: {parent.hash.slice(0, 8)}...</div>
           <h4>Transactions</h4>

@@ -41,10 +41,12 @@ function App() {
 export default App;
 
 // TODO features:
-// - link to current block
+// - link to latest block
 // - link to next block
 // - link to previous block
-// - link to previous block
+// - link to arbitrary
 // √ visually display linkage between blocks
-// - show parent hash, pointing back to parent
+// √ show parent hash
+// - highlight link between hash + parent hash
 // - animate moving between blocks?
+// - toggle hex on and off (default: off)

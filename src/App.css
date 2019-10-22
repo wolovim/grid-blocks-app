@@ -86,3 +86,18 @@ body {
   right: 0;
   top: 200px;
 }
+
+.block-number {
+  text-align: right;
+  font-weight: bold;
+  color: #777;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+.block-number::before {
+  content: "# ";
+  color: #bbb;
+  font-size: 14px;
+  font-family: sans-serif;
+}
