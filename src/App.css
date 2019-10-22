@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: #efefef;
 }
@@ -5,29 +10,18 @@ body {
 .App {
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .block-wrapper {
   padding: 24px 0;
-  width: 500px;
+  max=width: 960px;
   position: absolute;
   left: 50%;
-  margin-left: -350px
+  margin-left: -400px;
 }
 
 .block {
   padding: 12px;
   width: 300px;
   background-color: white;
-  box-shadow: -6px 6px 0 #ddd;
   border: 2px solid #ddd;
 }
 
@@ -35,13 +29,15 @@ body {
   z-index: 9;
   position: absolute;
   left: 240px;
+  box-shadow: -6px 6px 0 #ddd;
 }
 
 .previous-block, .next-block {
-  margin: 12px 0;
-  height: 300px;
+  margin: 108px 0;
+  height: 120px;
+  width: 120px;
   z-index: 1;
-  flex-grow: 0;
+  box-shadow: -2px 2px 0 #ddd;
 }
 
 .previous-block {
@@ -53,18 +49,17 @@ body {
 }
 
 .p1 {
-  left: 100px;
-  transform: scale(0.95);
+  left: 60px;
 }
 
 .p2 {
-  left: 50px;
-  transform: scale(0.8);
+  left: -120px;
+  opacity: 0.75;
 }
 
 .p3 {
-  left: 0px;
-  transform: scale(0.6);
+  left: -300px;
+  opacity: 0.5;
 }
 
 .next-block {
@@ -72,18 +67,22 @@ body {
 }
 
 .n1 {
-  left: 280px;
-  transform: scale(0.95);
-  z-index: 3;
+  left: 596px;
 }
 
 .n2 {
-  left: 330px;
-  transform: scale(0.8);
-  z-index: 2;
+  left: 776px;
+  opacity: 0.75;
 }
 
 .n3 {
-  left: 380px;
-  transform: scale(0.6);
+  left: 956px;
+  opacity: 0.5;
+}
+
+#chain {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 200px;
 }

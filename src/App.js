@@ -7,7 +7,11 @@ import './App.css';
 const BLOCK_QUERY = gql`
   query {
     block(number: 1514936) {
+      number
       hash
+      parent {
+        hash
+      }
       transactions {
         index
         hash
