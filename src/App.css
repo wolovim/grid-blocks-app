@@ -1,9 +1,11 @@
+body {
+  background-color: #efefef;
+}
+
 .App {
-  text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,4 +13,77 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.block-wrapper {
+  padding: 24px 0;
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -350px
+}
+
+.block {
+  padding: 12px;
+  width: 300px;
+  background-color: white;
+  box-shadow: -6px 6px 0 #ddd;
+  border: 2px solid #ddd;
+}
+
+.current-block {
+  z-index: 9;
+  position: absolute;
+  left: 240px;
+}
+
+.previous-block, .next-block {
+  margin: 12px 0;
+  height: 300px;
+  z-index: 1;
+  flex-grow: 0;
+}
+
+.previous-block {
+  background-image: linear-gradient(315deg, #efefef, white);
+}
+
+.p3, .p2, .p1, .n1, .n2, .n3 {
+  position: absolute;
+}
+
+.p1 {
+  left: 100px;
+  transform: scale(0.95);
+}
+
+.p2 {
+  left: 50px;
+  transform: scale(0.8);
+}
+
+.p3 {
+  left: 0px;
+  transform: scale(0.6);
+}
+
+.next-block {
+  background-image: linear-gradient(45deg, white, #efefef);
+}
+
+.n1 {
+  left: 280px;
+  transform: scale(0.95);
+  z-index: 3;
+}
+
+.n2 {
+  left: 330px;
+  transform: scale(0.8);
+  z-index: 2;
+}
+
+.n3 {
+  left: 380px;
+  transform: scale(0.6);
 }

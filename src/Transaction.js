@@ -6,10 +6,10 @@ function Transaction(props) {
   return (
     <div>
       <hr/>
-      <div>hash: {hash}</div>
+      <div>hash: {hash.slice(0, 8)}...</div>
       <div>value: {value}</div>
-      <div>from: {from.address}</div>
-      <div>to: {to && to.address}</div>
+      <div>from: {from.address.slice(0, 8)}...</div>
+      <div>to: {to && to.address.slice(0, 8)}...</div>
       <div>status: {status}</div>
       <div>gasUsed: {gasUsed}</div>
     </div>

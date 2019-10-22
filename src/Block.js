@@ -5,10 +5,20 @@ function Block(props) {
   const { hash, transactions } = props.block
 
   return (
-    <div>
-      <div>hash: {hash}</div>
-      <h3>Transactions</h3>
-      {transactions.map(tx => <Transaction key={tx.hash} tx={tx} />)}
+    <div className="block-wrapper">
+      <div className="block previous-block p3"></div>
+      <div className="block previous-block p2"></div>
+      <div className="block previous-block p1"></div>
+
+      <div className="block current-block">
+        <div>hash: {hash.slice(0, 8)}...</div>
+        <h4>Transactions</h4>
+        {transactions.map(tx => <Transaction key={tx.hash} tx={tx} />)}
+      </div>
+
+      <div className="block next-block n1"></div>
+      <div className="block next-block n2"></div>
+      <div className="block next-block n3"></div>
     </div>
   )
 }

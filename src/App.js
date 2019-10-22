@@ -35,3 +35,12 @@ function App() {
 }
 
 export default App;
+
+// TODO features:
+// - link to current block
+// - link to next block
+// - link to previous block
+// - link to previous block
+// √ visually display linkage between blocks
+// - show parent hash, pointing back to parent
+// - animate moving between blocks?
