@@ -23,7 +23,7 @@ function Blocks(props) {
             <div className="block-number">{parseInt(number, 16) - 1}</div>
             <div className="data-field">
               <span className="title">hash: </span>
-              <span className="value">
+              <span className="value parent-hash">
                 {parent ? `${parent.hash.slice(0, 8)}...` : 'N/A'}
               </span>
             </div>
@@ -35,14 +35,14 @@ function Blocks(props) {
 
           <div className="data-field">
             <span className="title">parent hash: </span>
-            <span className="value">
+            <span className="value parent-hash">
               {parent ? `${parent.hash.slice(0, 8)}...` : 'N/A - GENESIS'}
             </span>
           </div>
 
           <div className="data-field">
             <span className="title">hash: </span>
-            <span className="value">{hash.slice(0, 8)}...</span>
+            <span className="value current-hash">{hash.slice(0, 8)}...</span>
           </div>
 
           <div className="data-field">
@@ -60,6 +60,12 @@ function Blocks(props) {
         </div>
         <div className="block next-block n1" onClick={() => setBlockNumber(parseInt(number, 16) + 1)}>
           <div className="block-number">{parseInt(number, 16) + 1}</div>
+          <div className="data-field">
+            <span className="title">parent hash: </span>
+            <span className="value current-hash">
+              {`${hash.slice(0, 8)}...`}
+            </span>
+          </div>
         </div>
       </div>
       <hr id="chain" color="#ddd" size={4} />

@@ -52,10 +52,10 @@ export default App;
 // √ link to arbitrary
 // √ visually display linkage between blocks
 // √ show parent hash
-// - highlight link between hash + parent hash
+// √ highlight link between hash + parent hash
 // - animate moving between blocks?
 // - toggle hex on and off (default: off)
 // √ dont show side blocks if at the end or beginning of the chain
 // - make blocks look more blocky
-// - show contract creation (e.g. 1514927)
+// - show tx types, e.g. contract creation (e.g. 1514927)
 // - handle block numbers too large

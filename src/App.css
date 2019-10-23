@@ -29,6 +29,7 @@ body {
   z-index: 9;
   position: absolute;
   left: 240px;
+  min-height: 120px;
   box-shadow: -6px 6px 0 #ddd;
 }
 
@@ -37,7 +38,14 @@ body {
   height: 120px;
   width: 120px;
   z-index: 1;
-  box-shadow: -2px 2px 0 #ddd;
+  box-shadow: -3px 3px 0 #ddd;
+  transition: 500ms;
+}
+
+.previous-block:hover, .next-block:hover {
+  box-shadow: -6px 6px 0 #A5DEB6;
+  border: 2px solid #5A83AC;
+  cursor: pointer;
 }
 
 .previous-block {
@@ -116,6 +124,18 @@ body {
   color: #444;
   font-size: 15px;
   font-weight: bold;
+}
+
+.parent-hash, .current-hash {
+  transition: 500ms;
+}
+
+.App:hover .parent-hash {
+  color: #F7750D;
+}
+
+.App:hover .current-hash {
+  color: #E12A19;
 }
 
 .tx-title {
