@@ -93,11 +93,51 @@ body {
   color: #777;
   font-family: monospace;
   font-size: 15px;
+  margin-bottom: 12px;
 }
 
 .block-number::before {
-  content: "# ";
+  content: "block #";
   color: #bbb;
+  font-size: 13px;
+}
+
+.data-field {
+  margin-top: 4px;
+}
+
+.title {
+  text-transform: uppercase;
+  color: #777;
+  font-size: 13px;
+}
+
+.value {
+  color: #444;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.tx-title {
+  text-transform: uppercase;
+  color: #777;
+  font-size: 13px;
+}
+
+.tx {
+  position: relative;
+  padding: 12px;
+  background-color: #f2f2f2;
+  margin-top: 12px;
+}
+
+.tx-index {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4px;
   font-size: 14px;
-  font-family: sans-serif;
+  font-weight: bold;
+  color: #bbb;
+  font-family: monospace;
 }

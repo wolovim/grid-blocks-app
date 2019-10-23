@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from "apollo-boost";
-import Block from './Block'
+import Blocks from './Blocks'
 import './App.css';
 
 const BLOCK_QUERY = gql`
-  query {
-    block(number: 1514936) {
+  query BLOCK_QUERY($blockNumber: Long) {
+    block(number: $blockNumber) {
       number
       hash
       parent {
         hash
       }
+      transactionCount
       transactions {
         index
         hash
@@ -26,14 +27,18 @@ const BLOCK_QUERY = gql`
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(BLOCK_QUERY);
+  const [ blockNumber, setBlockNumber ] = useState(1514936)
+  const { loading, error, data } = useQuery(BLOCK_QUERY, {
+    variables: { blockNumber: `0x${blockNumber.toString(16)}` }
+  });
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error! Is Geth running with Graphql enabled?</p>
 
   return (
     <div className="App">
-      <Block block={data.block} />
+      <input value={blockNumber} onChange={e => { console.log(e.target.value); setBlockNumber(Number(e.target.value)) }} />
+      <Blocks block={data.block} />
     </div>
   )
 }
@@ -50,3 +55,5 @@ export default App;
 // - highlight link between hash + parent hash
 // - animate moving between blocks?
 // - toggle hex on and off (default: off)
+// - dont show side blocks if at the end or beginning of the chain
+// - make blocks look more blocky
