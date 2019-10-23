@@ -7,22 +7,32 @@ function Blocks(props) {
   return (
     <>
       <div className="block-wrapper">
-        <div className="block previous-block p3"></div>
-        <div className="block previous-block p2"></div>
-        <div className="block previous-block p1">
-          <div className="block-number">{parseInt(number, 16) - 1}</div>
-          <div className="data-field">
-            <span className="title">hash: </span>
-            <span className="value">{parent.hash.slice(0, 8)}...</span>
+        {parseInt(number, 16) - 3 >= 0 &&
+          <div className="block previous-block p3"></div>
+        }
+        {parseInt(number, 16) - 2 >= 0 &&
+          <div className="block previous-block p2"></div>
+        }
+        {parseInt(number, 16) - 1 >= 0 &&
+          <div className="block previous-block p1">
+            <div className="block-number">{parseInt(number, 16) - 1}</div>
+            <div className="data-field">
+              <span className="title">hash: </span>
+              <span className="value">
+                {parent ? `${parent.hash.slice(0, 8)}...` : 'N/A'}
+              </span>
+            </div>
           </div>
-        </div>
+        }
 
         <div className="block current-block">
           <div className="block-number">{parseInt(number, 16)}</div>
 
           <div className="data-field">
             <span className="title">parent hash: </span>
-            <span className="value">{parent.hash.slice(0, 8)}...</span>
+            <span className="value">
+              {parent ? `${parent.hash.slice(0, 8)}...` : 'N/A'}
+            </span>
           </div>
 
           <div className="data-field">
