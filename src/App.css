@@ -33,7 +33,7 @@ body {
 }
 
 .previous-block, .next-block {
-  margin: 108px 0;
+  margin: 0;
   height: 120px;
   width: 120px;
   z-index: 1;
@@ -81,10 +81,10 @@ body {
 }
 
 #chain {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
-  top: 200px;
+  top: 100px;
 }
 
 .block-number {

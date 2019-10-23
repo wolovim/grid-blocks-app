@@ -37,8 +37,8 @@ function App() {
 
   return (
     <div className="App">
-      <input value={blockNumber} onChange={e => { console.log(e.target.value); setBlockNumber(Number(e.target.value)) }} />
-      <Blocks block={data.block} />
+      <input value={blockNumber} onChange={e => setBlockNumber(Number(e.target.value))} />
+      <Blocks setBlockNumber={setBlockNumber} block={data.block} />
     </div>
   )
 }
@@ -47,13 +47,15 @@ export default App;
 
 // TODO features:
 // - link to latest block
-// - link to next block
-// - link to previous block
-// - link to arbitrary
+// √ link to next block
+// √ link to previous block
+// √ link to arbitrary
 // √ visually display linkage between blocks
 // √ show parent hash
 // - highlight link between hash + parent hash
 // - animate moving between blocks?
 // - toggle hex on and off (default: off)
-// - dont show side blocks if at the end or beginning of the chain
+// √ dont show side blocks if at the end or beginning of the chain
 // - make blocks look more blocky
+// - show contract creation (e.g. 1514927)
+// - handle block numbers too large
