@@ -21,6 +21,7 @@ body {
 
 .error-suggestion {
   font-style: italic;
+  line-height: 1.6;
 }
 
 .block-wrapper {

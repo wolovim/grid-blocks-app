@@ -34,7 +34,7 @@ function App() {
   });
 
   if (loading) return <p>Loading...</p>
-  if (error) return <Error />
+  if (error) return <Error error={error} />
 
   return (
     <div className="App">
@@ -48,15 +48,16 @@ export default App;
 
 // TODO features:
 // - link to latest block
+// - animate moving between blocks?
+// - toggle hex on and off (default: off)
+// - make blocks look more blocky
+// - show blockies for tx parties
+// - show tx types, e.g. contract creation (e.g. 1514927)
 // √ link to next block
 // √ link to previous block
 // √ link to arbitrary
 // √ visually display linkage between blocks
 // √ show parent hash
 // √ highlight link between hash + parent hash
-// - animate moving between blocks?
-// - toggle hex on and off (default: off)
 // √ dont show side blocks if at the end or beginning of the chain
-// - make blocks look more blocky
-// - show tx types, e.g. contract creation (e.g. 1514927)
-// - handle block numbers too large
+// √ handle block numbers too large
