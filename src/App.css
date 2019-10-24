@@ -10,6 +10,19 @@ body {
 .App {
 }
 
+.error-wrapper {
+  text-align: center;
+}
+
+.error-title {
+  margin: 24px 0 12px;
+  font-weight: bold;
+}
+
+.error-suggestion {
+  font-style: italic;
+}
+
 .block-wrapper {
   padding: 24px 0;
   max=width: 960px;
