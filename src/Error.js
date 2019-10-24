@@ -2,17 +2,17 @@ import React from 'react'
 
 const ERRORS = {
   generic: {
-    title: <span>Whoops! Something went wrong.</span>,
+    title: <>Whoops! Something went wrong.</>,
     suggestion: (
-      <span>
+      <>
         This error is unaccounted for. Check the logs and file an issue, please!
-      </span>
+      </>
     )
   },
   network: {
-    title: <span>Whoops! Unable to connect.</span>,
+    title: <>Whoops! Unable to connect.</>,
     suggestion: (
-      <span>
+      <>
         This app is designed with{' '}
         <a
           href="https://grid.ethereum.org"
@@ -23,16 +23,26 @@ const ERRORS = {
         in mind;
         <br />
         Within Grid, is Geth running with GraphQL enabled?
-      </span>
+      </>
     )
   },
   tooLarge: {
-    title: <span>Whoops! That block number hasn't occurred yet.</span>,
+    title: <>Whoops! That block number hasn't occurred yet.</>,
     suggestion: (
-      <span>
-        Refresh, then try using the "Latest block" button to get the most recent
-        block.
-      </span>
+      <>
+        Either this block hasn't been mined yet or your node isn't synced enough
+        to be aware of it. Try using the "Latest block" button to get the most
+        recent available block.
+      </>
+    )
+  },
+  peers: {
+    title: <>Oh no! Your node is lonely.</>,
+    suggestion: (
+      <>
+        Your node is having trouble finding peers to get the data it needs. Give
+        it more time, or a restart.
+      </>
     )
   }
 }
@@ -43,6 +53,7 @@ function Error(props) {
   let errorType = 'generic'
   if (message.includes('NetworkError')) errorType = 'network'
   if (message.includes('no trusted canonical hash trie')) errorType = 'tooLarge'
+  if (message.includes('no suitable peers')) errorType = 'peers'
 
   return (
     <div className="error-wrapper">
