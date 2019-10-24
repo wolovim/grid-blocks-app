@@ -12,14 +12,13 @@ const ERRORS = {
   },
   tooLarge: {
     title: <span>Whoops! That block number hasn't occurred yet.</span>,
-    suggestion: <span>Try using the "Latest" button to get the most recent block.</span>
+    suggestion: <span>Refresh, then try using the "Latest block" button to get the most recent block.</span>
   }
 }
 
 function Error(props) {
   const { message } = props.error
 
-  console.log('∆∆∆ message', message);
   let errorType = 'generic'
   if (message.includes('NetworkError')) errorType = 'network'
   if (message.includes('no trusted canonical hash trie')) errorType = 'tooLarge'

@@ -7,6 +7,37 @@ body {
   background-color: #efefef;
 }
 
+input {
+  font-size: 12px;
+  color: #444;
+  padding: 6px 8px;
+  border: 2px solid #5A83AC;
+  margin: 6px;
+}
+
+button {
+  border-radius: 0;
+  font-size: 12px;
+  outline: none;
+  padding: 6px 8px;
+  color: #5A83AC;
+  border: 2px solid #5A83AC;
+  background-color: white;
+  box-shadow: -3px 3px 0 #A5DEB6;
+  margin: 6px;
+  transition: 300ms;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #ECECFE;
+  color: #444;
+}
+
+button:active {
+  box-shadow: -1px 1px 0 #A5DEB6;
+}
+
 .App {
 }
 
@@ -106,7 +137,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 100px;
+  top: 128px;
 }
 
 .block-number {
