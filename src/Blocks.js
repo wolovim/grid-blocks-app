@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Transaction from './Transaction'
 
 function Blocks(props) {
@@ -8,18 +8,24 @@ function Blocks(props) {
   return (
     <>
       <div className="block-wrapper">
-        {parseInt(number, 16) - 3 >= 0 &&
-          <div className="block previous-block p3" onClick={() => setBlockNumber(parseInt(number, 16) - 3)}>
+        {parseInt(number, 16) - 3 >= 0 && (
+          <div
+            className="block previous-block p3"
+            onClick={() => setBlockNumber(parseInt(number, 16) - 3)}>
             <div className="block-number">{parseInt(number, 16) - 3}</div>
           </div>
-        }
-        {parseInt(number, 16) - 2 >= 0 &&
-          <div className="block previous-block p2" onClick={() => setBlockNumber(parseInt(number, 16) - 2)}>
+        )}
+        {parseInt(number, 16) - 2 >= 0 && (
+          <div
+            className="block previous-block p2"
+            onClick={() => setBlockNumber(parseInt(number, 16) - 2)}>
             <div className="block-number">{parseInt(number, 16) - 2}</div>
           </div>
-        }
-        {parseInt(number, 16) - 1 >= 0 &&
-          <div className="block previous-block p1" onClick={() => setBlockNumber(parseInt(number, 16) - 1)}>
+        )}
+        {parseInt(number, 16) - 1 >= 0 && (
+          <div
+            className="block previous-block p1"
+            onClick={() => setBlockNumber(parseInt(number, 16) - 1)}>
             <div className="block-number">{parseInt(number, 16) - 1}</div>
             <div className="data-field">
               <span className="title">hash: </span>
@@ -28,7 +34,7 @@ function Blocks(props) {
               </span>
             </div>
           </div>
-        }
+        )}
 
         <div className="block current-block">
           <div className="block-number">{parseInt(number, 16)}</div>
@@ -49,16 +55,24 @@ function Blocks(props) {
             <span className="tx-title">Transaction count: </span>
             <span className="value">{transactionCount}</span>
           </div>
-          {transactions.map(tx => <Transaction key={tx.hash} tx={tx} />)}
+          {transactions.map(tx => (
+            <Transaction key={tx.hash} tx={tx} />
+          ))}
         </div>
 
-        <div className="block next-block n3" onClick={() => setBlockNumber(parseInt(number, 16) + 3)}>
+        <div
+          className="block next-block n3"
+          onClick={() => setBlockNumber(parseInt(number, 16) + 3)}>
           <div className="block-number">{parseInt(number, 16) + 3}</div>
         </div>
-        <div className="block next-block n2" onClick={() => setBlockNumber(parseInt(number, 16) + 2)}>
+        <div
+          className="block next-block n2"
+          onClick={() => setBlockNumber(parseInt(number, 16) + 2)}>
           <div className="block-number">{parseInt(number, 16) + 2}</div>
         </div>
-        <div className="block next-block n1" onClick={() => setBlockNumber(parseInt(number, 16) + 1)}>
+        <div
+          className="block next-block n1"
+          onClick={() => setBlockNumber(parseInt(number, 16) + 1)}>
           <div className="block-number">{parseInt(number, 16) + 1}</div>
           <div className="data-field">
             <span className="title">parent hash: </span>

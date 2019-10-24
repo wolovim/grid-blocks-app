@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Transaction(props) {
   const { index, value, from, to, status, gasUsed } = props.tx
@@ -23,7 +23,9 @@ function Transaction(props) {
       </div>
       <div className="data-field">
         <span className="title">status: </span>
-        <span className="value">{parseInt(status, 16) === 1 ? 'SUCCEEDED' : 'FAILED'}</span>
+        <span className="value">
+          {parseInt(status, 16) === 1 ? 'SUCCEEDED' : 'FAILED'}
+        </span>
       </div>
       <div className="data-field">
         <span className="title">gas used: </span>

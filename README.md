@@ -1,3 +1,9 @@
+# Grid Blocks App
+
+A simple block explorer app for [Ethereum Grid](https://grid.ethereum.org).
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

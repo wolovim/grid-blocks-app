@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -11,7 +12,7 @@ input {
   font-size: 12px;
   color: #444;
   padding: 6px 8px;
-  border: 2px solid #5A83AC;
+  border: 2px solid #5a83ac;
   margin: 6px;
 }
 
@@ -20,22 +21,22 @@ button {
   font-size: 12px;
   outline: none;
   padding: 6px 8px;
-  color: #5A83AC;
-  border: 2px solid #5A83AC;
+  color: #5a83ac;
+  border: 2px solid #5a83ac;
   background-color: white;
-  box-shadow: -3px 3px 0 #A5DEB6;
+  box-shadow: -3px 3px 0 #a5deb6;
   margin: 6px;
   transition: 300ms;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #ECECFE;
+  background-color: #ececfe;
   color: #444;
 }
 
 button:active {
-  box-shadow: -1px 1px 0 #A5DEB6;
+  box-shadow: -1px 1px 0 #a5deb6;
 }
 
 .App {
@@ -78,7 +79,8 @@ button:active {
   box-shadow: -6px 6px 0 #ddd;
 }
 
-.previous-block, .next-block {
+.previous-block,
+.next-block {
   margin: 0;
   height: 120px;
   width: 120px;
@@ -87,9 +89,10 @@ button:active {
   transition: 500ms;
 }
 
-.previous-block:hover, .next-block:hover {
-  box-shadow: -6px 6px 0 #A5DEB6;
-  border: 2px solid #5A83AC;
+.previous-block:hover,
+.next-block:hover {
+  box-shadow: -6px 6px 0 #a5deb6;
+  border: 2px solid #5a83ac;
   cursor: pointer;
 }
 
@@ -97,7 +100,12 @@ button:active {
   background-image: linear-gradient(315deg, #efefef, white);
 }
 
-.p3, .p2, .p1, .n1, .n2, .n3 {
+.p3,
+.p2,
+.p1,
+.n1,
+.n2,
+.n3 {
   position: absolute;
 }
 
@@ -150,7 +158,7 @@ button:active {
 }
 
 .block-number::before {
-  content: "block #";
+  content: 'block #';
   color: #bbb;
   font-size: 13px;
 }
@@ -171,16 +179,17 @@ button:active {
   font-weight: bold;
 }
 
-.parent-hash, .current-hash {
+.parent-hash,
+.current-hash {
   transition: 500ms;
 }
 
 .App:hover .parent-hash {
-  color: #F7750D;
+  color: #f7750d;
 }
 
 .App:hover .current-hash {
-  color: #E12A19;
+  color: #e12a19;
 }
 
 .tx-title {
