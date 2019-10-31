@@ -2,8 +2,8 @@ import React from 'react'
 import Transaction from './Transaction'
 
 function Blocks(props) {
-  const { setBlockNumber, block } = props
-  const { number, hash, parent, transactions, transactionCount } = block
+  const { setBlockNumber, currentBlock } = props
+  const { number, hash, parent, transactions, transactionCount } = currentBlock
 
   return (
     <>

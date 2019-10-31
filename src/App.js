@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import Error from './Error'
@@ -28,12 +28,20 @@ const BLOCK_QUERY = gql`
 `
 
 function App() {
-  const [inputValue, setInputValue] = useState(1514936)
-  const [blockNumber, setBlockNumber] = useState(1514936)
+  const [blockNumber, setBlockNumber] = useState()
+  const [inputValue, setInputValue] = useState('')
+
+  useEffect(() => {
+    setInputValue(blockNumber || '')
+  }, [blockNumber])
+
   const variables = blockNumber
     ? { blockNumber: `0x${blockNumber.toString(16)}` }
     : {}
-  const { loading, error, data } = useQuery(BLOCK_QUERY, { variables })
+  const { loading, error, data } = useQuery(BLOCK_QUERY, {
+    variables,
+    onCompleted: data => setBlockNumber(parseInt(data.block.number, 16))
+  })
 
   if (loading) return <p>Loading...</p>
   if (error) return <Error error={error} />
@@ -41,12 +49,14 @@ function App() {
   return (
     <div className="App">
       <input
+        type="text"
+        placeholder="Enter a block number"
         value={inputValue}
         onChange={e => setInputValue(Number(e.target.value))}
       />
       <button onClick={() => setBlockNumber(inputValue)}>Lookup block</button>
-      <button onClick={() => setBlockNumber()}>Latest block</button>
-      <Blocks setBlockNumber={setBlockNumber} block={data.block} />
+      <button onClick={() => setBlockNumber(null)}>Latest block</button>
+      <Blocks setBlockNumber={setBlockNumber} currentBlock={data.block} />
     </div>
   )
 }
