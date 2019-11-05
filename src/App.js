@@ -7,7 +7,7 @@ import './App.css'
 
 const BLOCK_QUERY = gql`
   query BLOCK_QUERY($blockNumber: Long) {
-    ${`$blockNumber` ? `block(number: $blockNumber)` : `block`} {
+    ${`$blockNumber >= 0` ? `block(number: $blockNumber)` : `block`} {
       number
       hash
       parent {
@@ -28,16 +28,17 @@ const BLOCK_QUERY = gql`
 `
 
 function App() {
-  const [blockNumber, setBlockNumber] = useState()
+  const [blockNumber, setBlockNumber] = useState(0)
   const [inputValue, setInputValue] = useState('')
 
   useEffect(() => {
     setInputValue(blockNumber || '')
   }, [blockNumber])
 
-  const variables = blockNumber
-    ? { blockNumber: `0x${blockNumber.toString(16)}` }
-    : {}
+  const variables =
+    blockNumber || blockNumber === 0
+      ? { blockNumber: `0x${blockNumber.toString(16)}` }
+      : {}
   const { loading, error, data } = useQuery(BLOCK_QUERY, {
     variables,
     onCompleted: data => setBlockNumber(parseInt(data.block.number, 16))
