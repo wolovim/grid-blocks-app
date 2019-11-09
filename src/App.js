@@ -1,31 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { gql } from 'apollo-boost'
 import Error from './Error'
 import Blocks from './Blocks'
 import './App.css'
-
-const BLOCK_QUERY = gql`
-  query BLOCK_QUERY($blockNumber: Long) {
-    ${`$blockNumber >= 0` ? `block(number: $blockNumber)` : `block`} {
-      number
-      hash
-      parent {
-        hash
-      }
-      transactionCount
-      transactions {
-        index
-        hash
-        value
-        from { address }
-        to { address }
-        status
-        gasUsed
-      }
-    }
-  }
-`
+import { LATEST_BLOCK_QUERY, BLOCK_RANGE_QUERY } from './queries'
 
 function App() {
   const [blockNumber, setBlockNumber] = useState(0)
@@ -35,17 +13,44 @@ function App() {
     setInputValue(blockNumber || '')
   }, [blockNumber])
 
-  const variables =
-    blockNumber || blockNumber === 0
-      ? { blockNumber: `0x${blockNumber.toString(16)}` }
-      : {}
-  const { loading, error, data } = useQuery(BLOCK_QUERY, {
-    variables,
-    onCompleted: data => setBlockNumber(parseInt(data.block.number, 16))
-  })
+  let query, variables, type
+  if (blockNumber === undefined || blockNumber === null) {
+    type = 'latest'
+    query = LATEST_BLOCK_QUERY
+    variables = {}
+  } else if (blockNumber === 0) {
+    type = 'genesis'
+    query = BLOCK_RANGE_QUERY
+    variables = { blockNumberLower: '0x0', blockNumberUpper: '0x1' }
+  } else {
+    type = 'range'
+    query = BLOCK_RANGE_QUERY
+    variables = {
+      blockNumberLower: `0x${(blockNumber - 1).toString(16)}`,
+      blockNumberUpper: `0x${(blockNumber + 1).toString(16)}`
+    }
+  }
+
+  const { loading, error, data } = useQuery(query, { variables })
+  console.log('∆∆∆ data', data)
 
   if (loading) return <p>Loading...</p>
   if (error) return <Error error={error} />
+
+  let previousBlock, currentBlock, nextBlock
+  if (type === 'latest') {
+    currentBlock = data.block
+    nextBlock = null
+  } else if (type === 'genesis') {
+    previousBlock = null
+    currentBlock = data.blocks[0]
+    nextBlock = data.blocks[1]
+  } else {
+    previousBlock = data.blocks[0]
+    currentBlock = data.blocks[1]
+    nextBlock = data.blocks[2]
+  }
+  // setBlockNumber(parseInt(currentBlock.number, 16))
 
   return (
     <div className="App">
@@ -57,7 +62,13 @@ function App() {
       />
       <button onClick={() => setBlockNumber(inputValue)}>Lookup block</button>
       <button onClick={() => setBlockNumber(null)}>Latest block</button>
-      <Blocks setBlockNumber={setBlockNumber} currentBlock={data.block} />
+      <Blocks
+        setBlockNumber={setBlockNumber}
+        previousBlock={previousBlock}
+        currentBlock={currentBlock}
+        nextBlock={nextBlock}
+        latest={type === 'latest'}
+      />
     </div>
   )
 }

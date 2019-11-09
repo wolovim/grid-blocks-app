@@ -2,7 +2,7 @@ import React from 'react'
 import Transaction from './Transaction'
 
 function Blocks(props) {
-  const { setBlockNumber, currentBlock } = props
+  const { setBlockNumber, currentBlock, latest } = props
   const { number, hash, parent, transactions, transactionCount } = currentBlock
 
   return (
@@ -60,27 +60,31 @@ function Blocks(props) {
           ))}
         </div>
 
-        <div
-          className="block next-block n3"
-          onClick={() => setBlockNumber(parseInt(number, 16) + 3)}>
-          <div className="block-number">{parseInt(number, 16) + 3}</div>
-        </div>
-        <div
-          className="block next-block n2"
-          onClick={() => setBlockNumber(parseInt(number, 16) + 2)}>
-          <div className="block-number">{parseInt(number, 16) + 2}</div>
-        </div>
-        <div
-          className="block next-block n1"
-          onClick={() => setBlockNumber(parseInt(number, 16) + 1)}>
-          <div className="block-number">{parseInt(number, 16) + 1}</div>
-          <div className="data-field">
-            <span className="title">parent hash: </span>
-            <span className="value current-hash">
-              {`${hash.slice(0, 8)}...`}
-            </span>
-          </div>
-        </div>
+        {!latest && (
+          <>
+            <div
+              className="block next-block n3"
+              onClick={() => setBlockNumber(parseInt(number, 16) + 3)}>
+              <div className="block-number">{parseInt(number, 16) + 3}</div>
+            </div>
+            <div
+              className="block next-block n2"
+              onClick={() => setBlockNumber(parseInt(number, 16) + 2)}>
+              <div className="block-number">{parseInt(number, 16) + 2}</div>
+            </div>
+            <div
+              className="block next-block n1"
+              onClick={() => setBlockNumber(parseInt(number, 16) + 1)}>
+              <div className="block-number">{parseInt(number, 16) + 1}</div>
+              <div className="data-field">
+                <span className="title">parent hash: </span>
+                <span className="value current-hash">
+                  {`${hash.slice(0, 8)}...`}
+                </span>
+              </div>
+            </div>
+          </>
+        )}
       </div>
       <hr id="chain" color="#ddd" size={4} />
     </>
