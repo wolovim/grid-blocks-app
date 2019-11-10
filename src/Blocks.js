@@ -23,6 +23,7 @@ function Blocks(props) {
           setBlockNumber={setBlockNumber}
         />
         <Block
+          current
           classes="block current-block"
           number={number}
           setBlockNumber={setBlockNumber}

@@ -22,14 +22,16 @@ function App({ client }) {
 
   return (
     <div className="App">
-      <input
-        type="text"
-        placeholder="Enter a block number"
-        value={inputValue}
-        onChange={e => setInputValue(Number(e.target.value))}
-      />
-      <button onClick={() => setBlockNumber(inputValue)}>Lookup block</button>
-      <button onClick={() => setBlockNumber(null)}>Latest block</button>
+      <div className="form">
+        <input
+          type="text"
+          placeholder="Enter a block number"
+          value={inputValue}
+          onChange={e => setInputValue(Number(e.target.value))}
+        />
+        <button onClick={() => setBlockNumber(inputValue)}>Lookup block</button>
+        <button onClick={() => setBlockNumber(null)}>Latest block</button>
+      </div>
       <Blocks
         setBlockNumber={setBlockNumber}
         currentBlockNumber={blockNumber}

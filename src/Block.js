@@ -5,7 +5,7 @@ import Transaction from './Transaction'
 import LoadingBlock from './LoadingBlock'
 
 function Block(props) {
-  const { setBlockNumber, classes, number } = props
+  const { current, setBlockNumber, classes, number } = props
 
   const { loading, error, data } = useQuery(GET_BLOCK_QUERY, {
     variables: { blockNumber: `0x${number && number.toString(16)}` }
@@ -22,12 +22,12 @@ function Block(props) {
       <div className="block-number">{number}</div>
       <div className="data-field">
         <span className="title">hash: </span>
-        <span className="value parent-hash">{hash.slice(0, 8)}...</span>
+        <span className="value hash">{hash.slice(0, 8)}...</span>
       </div>
       {parent && (
         <div className="data-field">
           <span className="title">parent hash: </span>
-          <span className="value previous-parent-hash">
+          <span className="value parent-hash">
             {parent.hash.slice(0, 8)}...
           </span>
         </div>
@@ -36,9 +36,7 @@ function Block(props) {
         <span className="tx-title">Tx count: </span>
         <span className="value">{transactionCount}</span>
       </div>
-      {transactions.map(tx => (
-        <Transaction key={tx.hash} tx={tx} />
-      ))}
+      {current && transactions.map(tx => <Transaction key={tx.hash} tx={tx} />)}
     </div>
   )
 }
