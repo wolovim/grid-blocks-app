@@ -1,90 +1,47 @@
 import React from 'react'
-import Transaction from './Transaction'
+import Block from './Block'
 
 function Blocks(props) {
-  const { setBlockNumber, currentBlock, latest } = props
-  const { number, hash, parent, transactions, transactionCount } = currentBlock
+  const { setBlockNumber, currentBlockNumber: number } = props
 
   return (
     <>
       <div className="block-wrapper">
-        {parseInt(number, 16) - 3 >= 0 && (
-          <div
-            className="block previous-block p3"
-            onClick={() => setBlockNumber(parseInt(number, 16) - 3)}>
-            <div className="block-number">{parseInt(number, 16) - 3}</div>
-          </div>
-        )}
-        {parseInt(number, 16) - 2 >= 0 && (
-          <div
-            className="block previous-block p2"
-            onClick={() => setBlockNumber(parseInt(number, 16) - 2)}>
-            <div className="block-number">{parseInt(number, 16) - 2}</div>
-          </div>
-        )}
-        {parseInt(number, 16) - 1 >= 0 && (
-          <div
-            className="block previous-block p1"
-            onClick={() => setBlockNumber(parseInt(number, 16) - 1)}>
-            <div className="block-number">{parseInt(number, 16) - 1}</div>
-            <div className="data-field">
-              <span className="title">hash: </span>
-              <span className="value parent-hash">
-                {parent ? `${parent.hash.slice(0, 8)}...` : 'N/A'}
-              </span>
-            </div>
-          </div>
-        )}
-
-        <div className="block current-block">
-          <div className="block-number">{parseInt(number, 16)}</div>
-
-          <div className="data-field">
-            <span className="title">parent hash: </span>
-            <span className="value parent-hash">
-              {parent ? `${parent.hash.slice(0, 8)}...` : 'N/A - GENESIS'}
-            </span>
-          </div>
-
-          <div className="data-field">
-            <span className="title">hash: </span>
-            <span className="value current-hash">{hash.slice(0, 8)}...</span>
-          </div>
-
-          <div className="data-field">
-            <span className="tx-title">Transaction count: </span>
-            <span className="value">{transactionCount}</span>
-          </div>
-          {transactions.map(tx => (
-            <Transaction key={tx.hash} tx={tx} />
-          ))}
-        </div>
-
-        {!latest && (
-          <>
-            <div
-              className="block next-block n3"
-              onClick={() => setBlockNumber(parseInt(number, 16) + 3)}>
-              <div className="block-number">{parseInt(number, 16) + 3}</div>
-            </div>
-            <div
-              className="block next-block n2"
-              onClick={() => setBlockNumber(parseInt(number, 16) + 2)}>
-              <div className="block-number">{parseInt(number, 16) + 2}</div>
-            </div>
-            <div
-              className="block next-block n1"
-              onClick={() => setBlockNumber(parseInt(number, 16) + 1)}>
-              <div className="block-number">{parseInt(number, 16) + 1}</div>
-              <div className="data-field">
-                <span className="title">parent hash: </span>
-                <span className="value current-hash">
-                  {`${hash.slice(0, 8)}...`}
-                </span>
-              </div>
-            </div>
-          </>
-        )}
+        <Block
+          classes="block previous-block p3"
+          number={number - 3}
+          setBlockNumber={setBlockNumber}
+        />
+        <Block
+          classes="block previous-block p2"
+          number={number - 2}
+          setBlockNumber={setBlockNumber}
+        />
+        <Block
+          classes="block previous-block p1"
+          number={number - 1}
+          setBlockNumber={setBlockNumber}
+        />
+        <Block
+          classes="block current-block"
+          number={number}
+          setBlockNumber={setBlockNumber}
+        />
+        <Block
+          classes="block next-block n1"
+          number={number + 1}
+          setBlockNumber={setBlockNumber}
+        />
+        <Block
+          classes="block next-block n2"
+          number={number + 2}
+          setBlockNumber={setBlockNumber}
+        />
+        <Block
+          classes="block next-block n3"
+          number={number + 3}
+          setBlockNumber={setBlockNumber}
+        />
       </div>
       <hr id="chain" color="#ddd" size={4} />
     </>

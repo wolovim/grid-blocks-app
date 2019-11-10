@@ -26,6 +26,32 @@ export const LATEST_BLOCK_QUERY = gql`
   }
 `
 
+export const GET_BLOCK_QUERY = gql`
+  query GET_BLOCK_QUERY($blockNumber: Long!) {
+    block(number: $blockNumber) {
+      number
+      hash
+      parent {
+        hash
+      }
+      transactionCount
+      transactions {
+        index
+        hash
+        value
+        from {
+          address
+        }
+        to {
+          address
+        }
+        status
+        gasUsed
+      }
+    }
+  }
+`
+
 export const BLOCK_RANGE_QUERY = gql`
   query BLOCK_RANGE_QUERY($blockNumberLower: Long!, $blockNumberUpper: Long) {
     blocks(from: $blockNumberLower, to: $blockNumberUpper) {
