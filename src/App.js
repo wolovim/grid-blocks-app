@@ -1,24 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { withApollo } from 'react-apollo'
+import Error from './Error'
 import Blocks from './Blocks'
 import './App.css'
 import { LATEST_BLOCK_QUERY } from './queries'
 
 function App({ client }) {
   const [blockNumber, setBlockNumber] = useState(0)
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('0')
+  const [errorType, setErrorType] = useState('peers')
 
+  // Send a dummy query on mount to see if connected to GraphQL server
+  useEffect(() => {
+    client.query({ query: LATEST_BLOCK_QUERY }).catch(e => {
+      if (e.toString().includes('Network error')) setErrorType('network')
+    })
+  }, [client])
+
+  // Fetching the latest block requires a query with a `null` blockNumber
   useEffect(() => {
     if (blockNumber || blockNumber === 0) {
       setInputValue(blockNumber)
     } else {
-      client.query({ query: LATEST_BLOCK_QUERY }).then(response => {
-        if (response.data) {
-          setBlockNumber(parseInt(response.data.block.number, 16))
-        }
-      })
+      client
+        .query({ query: LATEST_BLOCK_QUERY })
+        .then(response => {
+          if (response.data) {
+            let blockNumber = parseInt(response.data.block.number, 16)
+            if (blockNumber >= 0) setBlockNumber(blockNumber)
+          }
+        })
+        .catch(e => {
+          if (e.toString().includes('peers')) setErrorType('peers')
+        })
     }
-  }, [client, blockNumber])
+  }, [client, blockNumber, errorType])
 
   return (
     <div className="App">
@@ -36,6 +52,9 @@ function App({ client }) {
         setBlockNumber={setBlockNumber}
         currentBlockNumber={blockNumber}
       />
+      {errorType && (
+        <Error type={errorType} clearError={() => setErrorType(null)} />
+      )}
     </div>
   )
 }
