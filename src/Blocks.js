@@ -1,9 +1,7 @@
 import React from 'react'
 import Block from './Block'
 
-function Blocks(props) {
-  const { setBlockNumber, currentBlockNumber: number } = props
-
+function Blocks({ setBlockNumber, currentBlockNumber: number }) {
   return (
     <>
       <div className="block-wrapper">

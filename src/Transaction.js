@@ -1,7 +1,8 @@
 import React from 'react'
+import { Identicon } from 'ethereum-react-components'
 
-function Transaction(props) {
-  const { index, value, from, to, status, gasUsed } = props.tx
+function Transaction({ tx }) {
+  const { index, value, from, to, status, gasUsed } = tx
 
   return (
     <div className="tx">
@@ -10,11 +11,17 @@ function Transaction(props) {
       {/* TODO: directional, or contract creation if none */}
       <div className="data-field">
         <span className="title">from: </span>
-        <span className="value">{from.address.slice(0, 8)}...</span>
+        <span className="address value">
+          <Identicon size="tiny" address={from.address} />
+          {from.address.slice(0, 8)}...
+        </span>
       </div>
       <div className="data-field">
         <span className="title">to: </span>
-        <span className="value">{to && to.address.slice(0, 8)}...</span>
+        <span className="address value">
+          {to && <Identicon size="tiny" address={to.address} />}
+          {to && to.address.slice(0, 8)}...
+        </span>
       </div>
 
       <div className="data-field">

@@ -8,7 +8,7 @@ import { LATEST_BLOCK_QUERY } from './queries'
 function App({ client }) {
   const [blockNumber, setBlockNumber] = useState(0)
   const [inputValue, setInputValue] = useState('0')
-  const [errorType, setErrorType] = useState('peers')
+  const [errorType, setErrorType] = useState(null)
 
   // Send a dummy query on mount to see if connected to GraphQL server
   useEffect(() => {

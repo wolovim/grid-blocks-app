@@ -4,9 +4,7 @@ import { GET_BLOCK_QUERY } from './queries'
 import Transaction from './Transaction'
 import LoadingBlock from './LoadingBlock'
 
-function Block(props) {
-  const { current, setBlockNumber, classes, number } = props
-
+function Block({ current, setBlockNumber, classes, number }) {
   const { loading, error, data } = useQuery(GET_BLOCK_QUERY, {
     variables: { blockNumber: `0x${number && number.toString(16)}` }
   })

@@ -199,6 +199,12 @@ button:active {
   font-weight: bold;
 }
 
+.address > span {
+  position: relative;
+  top: 4px;
+  margin: 0 4px;
+}
+
 .parent-hash,
 .hash {
   transition: 500ms;
