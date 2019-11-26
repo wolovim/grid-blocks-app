@@ -235,11 +235,11 @@ button:active {
 }
 
 .App:hover .current-block .hash {
-  color: #000055;
+  color: #5a83ac;
 }
 
 .App:hover .n1 .parent-hash {
-  color: #000055;
+  color: #5a83ac;
 }
 
 .App:hover .n1 .hash {

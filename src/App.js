@@ -36,6 +36,11 @@ function App({ client }) {
     }
   }, [client, blockNumber, errorType])
 
+  const updateBlockNumber = number => {
+    setBlockNumber(number)
+    setPendingPage(false)
+  }
+
   return (
     <div className="App">
       <div className="form">
@@ -45,8 +50,10 @@ function App({ client }) {
           value={inputValue}
           onChange={e => setInputValue(Number(e.target.value))}
         />
-        <button onClick={() => setBlockNumber(inputValue)}>Lookup block</button>
-        <button onClick={() => setBlockNumber(null)}>Latest block</button>
+        <button onClick={() => updateBlockNumber(inputValue)}>
+          Lookup block
+        </button>
+        <button onClick={() => updateBlockNumber(null)}>Latest block</button>
       </div>
       <Blocks
         setBlockNumber={setBlockNumber}
