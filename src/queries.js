@@ -77,3 +77,24 @@ export const BLOCK_RANGE_QUERY = gql`
     }
   }
 `
+
+export const GET_PENDING_QUERY = gql`
+  query GET_PENDING_QUERY {
+    pending {
+      transactionCount
+      transactions {
+        from {
+          address
+        }
+        to {
+          address
+        }
+        value
+        index
+        status
+        gasUsed
+        cumulativeGasUsed
+      }
+    }
+  }
+`

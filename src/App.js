@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { withApollo } from 'react-apollo'
 import Error from './Error'
 import Blocks from './Blocks'
+import PendingTxs from './PendingTxs'
 import './App.css'
 import { LATEST_BLOCK_QUERY } from './queries'
 
@@ -9,6 +10,7 @@ function App({ client }) {
   const [blockNumber, setBlockNumber] = useState(0)
   const [inputValue, setInputValue] = useState('0')
   const [errorType, setErrorType] = useState(null)
+  const [showPendingTxs, setPendingPage] = useState(false)
 
   // Send a dummy query on mount to see if connected to GraphQL server
   useEffect(() => {
@@ -54,11 +56,17 @@ function App({ client }) {
           Lookup block
         </button>
         <button onClick={() => updateBlockNumber(null)}>Latest block</button>
+        <button onClick={() => setPendingPage(!showPendingTxs)}>
+          {showPendingTxs ? 'Back to Blocks' : 'Pending Transactions'}
+        </button>
       </div>
-      <Blocks
-        setBlockNumber={setBlockNumber}
-        currentBlockNumber={blockNumber}
-      />
+      {showPendingTxs && <PendingTxs />}
+      {!showPendingTxs && (
+        <Blocks
+          setBlockNumber={setBlockNumber}
+          currentBlockNumber={blockNumber}
+        />
+      )}
       {errorType && (
         <Error type={errorType} clearError={() => setErrorType(null)} />
       )}

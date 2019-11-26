@@ -258,6 +258,24 @@ button:active {
   color: #4b0082;
 }
 
+.pending-page {
+  margin: 12px 24px;
+}
+
+.pending-page__empty {
+  text-align: center;
+  line-height: 1.5;
+  margin: 24px auto;
+  padding: 18px;
+  color: #777;
+}
+
+.pending-page__empty-title {
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #999;
+}
+
 .tx-title {
   text-transform: uppercase;
   color: #777;
